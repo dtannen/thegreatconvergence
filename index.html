@@ -9,6 +9,14 @@
   <meta property="og:description" content="When different models agree, that means something.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thegreatconvergence.com">
+  <meta property="og:image" content="https://thegreatconvergence.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Great Convergence">
+  <meta name="twitter:description" content="When different models agree, that means something.">
+  <meta name="twitter:image" content="https://thegreatconvergence.com/og-image.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2308080f'/><text x='50' y='68' font-size='60' font-family='serif' fill='%23c9a84c' text-anchor='middle'>C</text></svg>" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -419,8 +427,7 @@
     .chart-bar.bar-1 { background: linear-gradient(90deg, var(--coral), #fb923c); }
     .chart-bar.bar-2 { background: linear-gradient(90deg, #fb923c, var(--accent)); }
     .chart-bar.bar-3 { background: linear-gradient(90deg, var(--accent), var(--teal)); }
-    .chart-bar.bar-4 { background: linear-gradient(90deg, var(--teal), var(--teal)); }
-    .chart-bar.bar-5 { background: var(--teal); }
+    .chart-bar.bar-4 { background: linear-gradient(90deg, var(--teal), var(--teal)); min-width: 3%; }
 
     .chart-value {
       font-size: 0.8rem;
@@ -548,17 +555,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
@@ -612,13 +608,160 @@
       .node-review { left: 92%; }
       .node-iterate { left: 8%; }
     }
+
+    /* ─── INLINE STYLE REPLACEMENTS ─── */
+    .lead-follow-up {
+      margin-top: -2rem;
+      color: var(--text);
+    }
+
+    .text-accent {
+      color: var(--accent);
+    }
+
+    /* ─── SKIP LINK ─── */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .sr-only:focus {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      width: auto;
+      height: auto;
+      padding: 0.75rem 1.5rem;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 10000;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-wrapper {
+      margin-top: 3rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .cta-button:hover {
+      background: var(--accent-glow);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(201, 168, 76, 0.3);
+    }
+
+    .cta-subtext {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* ─── ENHANCED FOOTER ─── */
+    .footer-links {
+      margin-top: 0.75rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-copyright {
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+
+    /* ─── JS FALLBACK: content visible by default, hidden only when JS is active ─── */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .js .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── REDUCED MOTION ─── */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      .js .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .hero-label,
+      .hero h1,
+      .hero-sub,
+      .scroll-hint {
+        opacity: 1;
+        animation: none;
+      }
+
+      .scroll-line { animation: none; opacity: 0.5; }
+
+      .cycle-ring::before { animation: none; }
+
+      .chart-bar { transition: none; }
+
+      .converged-text { transition: none; }
+
+      .principle-card { transition: none; }
+      .principle-card:hover { transform: none; }
+
+      .pain-point { transition: none; }
+    }
   </style>
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <a href="#main-content" class="sr-only">Skip to content</a>
 
   <!-- ─── HERO ─── -->
   <section class="hero">
-    <canvas id="hero-canvas"></canvas>
+    <canvas id="hero-canvas" role="img" aria-label="Animation showing six different AI agents orbiting independently then converging to a single point"></canvas>
+    <p class="sr-only">Six colored dots representing different AI models orbit in unique patterns, then gradually converge to a single point — illustrating how independent models can arrive at the same answer.</p>
     <div class="hero-content">
       <div class="hero-label">Beyond the monoculture</div>
       <h1>The Great <em>Convergence</em></h1>
@@ -629,6 +772,8 @@
       <div class="scroll-line"></div>
     </div>
   </section>
+
+  <main id="main-content">
 
   <!-- ─── THE PROBLEM ─── -->
   <section class="problem">
@@ -661,8 +806,8 @@
     <div class="section-inner">
       <div class="section-label reveal">The answer</div>
       <h2 class="reveal reveal-delay-1">What if <em>different</em> models checked each other?</h2>
-      <p class="lead reveal reveal-delay-2">Different architectures. Different training. Different strengths and weaknesses. When you put genuinely heterogeneous models into a structured review loop&thinsp;&mdash;&thinsp;one implements, others review, findings get synthesized, fixes get made&thinsp;&mdash;&thinsp;and they keep iterating until they all independently agree: zero issues remain.</p>
-      <p class="lead reveal reveal-delay-3" style="margin-top: -2rem; color: var(--text);">That agreement is <strong style="color: var(--accent);">convergence</strong>&thinsp;&mdash;&thinsp;and it's a fundamentally different signal than one model agreeing with itself.</p>
+      <p class="lead reveal reveal-delay-2">Different architectures. Different training. Different strengths and weaknesses. Put genuinely heterogeneous models into a structured review loop: one implements, others review, findings get synthesized, fixes get made. They keep iterating until every model independently reports zero issues.</p>
+      <p class="lead lead-follow-up reveal reveal-delay-3">That agreement is <strong class="text-accent">convergence</strong>&thinsp;&mdash;&thinsp;and it's a fundamentally different signal than one model agreeing with itself.</p>
 
       <div class="cycle-container reveal reveal-delay-4" id="cycle-diagram">
         <div class="cycle-ring"></div>
@@ -709,7 +854,7 @@
     <div class="section-inner">
       <div class="section-label reveal">Convergence in action</div>
       <h2 class="reveal reveal-delay-1">Different eyes, fewer issues, real confidence.</h2>
-      <p class="lead reveal reveal-delay-2">Each cycle, models with different strengths catch different things. Issues drop. When every model&thinsp;&mdash;&thinsp;each with its own architecture and training&thinsp;&mdash;&thinsp;independently reports zero: that's convergence.</p>
+      <p class="lead reveal reveal-delay-2">Each cycle, models with different strengths catch different things. Issues drop. When every model&thinsp;&mdash;&thinsp;each with its own architecture and training&thinsp;&mdash;&thinsp;independently reports zero: that's convergence. Here's an illustrative example:</p>
 
       <div class="convergence-chart reveal reveal-delay-3" id="convergence-chart">
         <div class="chart-row">
@@ -747,7 +892,7 @@
             <svg viewBox="0 0 24 24"><path d="M16 3h5v5M8 3H3v5M3 16v5h5M21 16v5h-5"/><path d="M21 3L14 10M3 3l7 7M3 21l7-7M21 21l-7-7"/></svg>
           </div>
           <h3>True Independence</h3>
-          <p>Different models have different training, architectures, and failure modes. When they converge, it's because the answer is right&thinsp;&mdash;&thinsp;not because they share the same bias.</p>
+          <p>Different models have different training, architectures, and failure modes. When they converge, it's a strong signal the answer is right&thinsp;&mdash;&thinsp;not because they share the same bias.</p>
         </div>
         <div class="principle-card reveal reveal-delay-2">
           <div class="principle-icon">
@@ -773,21 +918,58 @@
       <div class="section-label reveal">The future</div>
       <h2 class="reveal reveal-delay-1">The monoculture era is ending.<br>The convergence era is beginning.</h2>
       <p class="lead reveal reveal-delay-2">The most reliable AI won't come from one model getting bigger. It will come from different models holding each other accountable&thinsp;&mdash;&thinsp;until only the truth survives.</p>
+      <div class="cta-wrapper reveal reveal-delay-3">
+        <a href="https://github.com/Commands-com" class="cta-button">Explore on GitHub</a>
+        <p class="cta-subtext">Read the source. Try the loop. Join the convergence.</p>
+      </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ─── FOOTER ─── -->
   <footer>
     <p>The Great Convergence</p>
+    <p class="footer-copyright">&copy; 2026 The Great Convergence. Built with convergence in mind.</p>
+    <div class="footer-links">
+      <a href="https://github.com/Commands-com">GitHub</a>
+    </div>
   </footer>
+
+  <noscript>
+    <style>
+      .reveal { opacity: 1; transform: none; }
+      .hero-label, .hero h1, .hero-sub, .scroll-hint { opacity: 1; animation: none; }
+    </style>
+  </noscript>
 
   <script>
     /* ───────────────────────────────────────
-       HERO CANVAS — CONVERGENCE ANIMATION
+       SCROLL REVEAL (runs first to ensure content is never stranded hidden)
        ─────────────────────────────────────── */
     (function () {
+      var reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (el) { observer.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('visible'); });
+      }
+    })();
+
+    /* ───────────────────────────────────────
+       HERO CANVAS — CONVERGENCE ANIMATION
+       ─────────────────────────────────────── */
+    try { (function () {
       const canvas = document.getElementById('hero-canvas');
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas && canvas.getContext('2d');
+      if (!canvas || !ctx) return;
       let W, H, cx, cy;
 
       function resize() {
@@ -801,7 +983,18 @@
         cy = H / 2;
       }
 
-      window.addEventListener('resize', resize);
+      function recalcAgents() {
+        if (typeof agents !== 'undefined') {
+          agents.forEach((a, i) => {
+            const minR = Math.min(W, H) * 0.12;
+            const maxR = Math.min(W, H) * 0.32;
+            a.baseRadius = minR + (i / 5) * (maxR - minR);
+            a.trail = [];
+          });
+        }
+      }
+
+      window.addEventListener('resize', () => { resize(); recalcAgents(); });
       resize();
 
       const AGENT_COLORS = [
@@ -938,22 +1131,29 @@
         requestAnimationFrame(animate);
       }
 
-      requestAnimationFrame(animate);
-    })();
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    /* ───────────────────────────────────────
-       SCROLL REVEAL
-       ─────────────────────────────────────── */
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
+      function drawStaticFrame() {
+        ctx.clearRect(0, 0, W, H);
+        agents.forEach(a => a.update(3.5, 0.5));
+        drawConnections(agents, 0.5);
+        drawCenterPulse(0.5);
+        agents.forEach(a => a.draw(ctx));
+      }
+
+      if (!prefersReducedMotion.matches) {
+        requestAnimationFrame(animate);
+      } else {
+        drawStaticFrame();
+      }
+
+      // Redraw static frame on resize when animation is disabled
+      window.addEventListener('resize', () => {
+        if (prefersReducedMotion.matches) {
+          requestAnimationFrame(drawStaticFrame);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-    reveals.forEach(el => observer.observe(el));
+    })(); } catch (e) { /* canvas animation is decorative; failure is non-critical */ }
 
     /* ───────────────────────────────────────
        CYCLE DIAGRAM ANIMATION
@@ -962,15 +1162,34 @@
       const nodes = ['implement', 'review', 'synthesize', 'iterate'];
       const countEl = document.getElementById('cycle-count');
       const convergedEl = document.getElementById('converged-text');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // In reduced-motion mode, show a static converged state
+      if (reducedMotion) {
+        countEl.textContent = '4';
+        convergedEl.classList.add('show');
+        return;
+      }
+
+      // If IntersectionObserver is unavailable, show static converged state
+      if (!('IntersectionObserver' in window)) {
+        countEl.textContent = '4';
+        convergedEl.classList.add('show');
+        return;
+      }
+
       let cycleNum = 1;
       let step = 0;
       let running = false;
+      let visible = false;
+      let timeoutId = null;
 
       function clearActive() {
         nodes.forEach(n => document.getElementById('node-' + n).classList.remove('active'));
       }
 
       function tick() {
+        if (!visible) { running = false; return; }
         clearActive();
         const nodeId = nodes[step % 4];
         document.getElementById('node-' + nodeId).classList.add('active');
@@ -979,8 +1198,9 @@
           cycleNum++;
           if (cycleNum > 4) {
             countEl.textContent = '4';
+            clearActive();
             convergedEl.classList.add('show');
-            setTimeout(() => {
+            timeoutId = setTimeout(() => {
               convergedEl.classList.remove('show');
               cycleNum = 1;
               step = 0;
@@ -993,11 +1213,12 @@
         }
 
         step++;
-        setTimeout(tick, 1200);
+        timeoutId = setTimeout(tick, 1200);
       }
 
       const diagramObs = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && !running) {
+        visible = entries[0].isIntersecting;
+        if (visible && !running) {
           running = true;
           tick();
         }
@@ -1009,19 +1230,29 @@
     /* ───────────────────────────────────────
        CONVERGENCE CHART ANIMATION
        ─────────────────────────────────────── */
-    const chartObs = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        const bars = document.querySelectorAll('.chart-bar');
-        bars.forEach((bar, i) => {
-          setTimeout(() => {
-            bar.style.width = bar.dataset.width;
-          }, i * 250);
-        });
-        chartObs.disconnect();
-      }
-    }, { threshold: 0.3 });
+    (function () {
+      const bars = document.querySelectorAll('.chart-bar');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    chartObs.observe(document.getElementById('convergence-chart'));
+      // Reduced motion or no IntersectionObserver: show bars immediately
+      if (reducedMotion || !('IntersectionObserver' in window)) {
+        bars.forEach(bar => { bar.style.width = bar.dataset.width; });
+        return;
+      }
+
+      const chartObs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          bars.forEach((bar, i) => {
+            setTimeout(() => {
+              bar.style.width = bar.dataset.width;
+            }, i * 250);
+          });
+          chartObs.disconnect();
+        }
+      }, { threshold: 0.3 });
+
+      chartObs.observe(document.getElementById('convergence-chart'));
+    })();
   </script>
 
 </body>
