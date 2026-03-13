@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Great Convergence — Reliable AI Through Multi-Agent Agreement</title>
+  <meta name="description" content="Multiple personas on one model share the same blind spots. True reliability emerges when genuinely different models converge on agreement.">
+  <meta property="og:title" content="The Great Convergence">
+  <meta property="og:description" content="When different models agree, that means something.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thegreatconvergence.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #08080f;
+      --bg-subtle: #0d0d18;
+      --text: #e8e6e1;
+      --text-dim: #7a7a88;
+      --text-mid: #a0a0ad;
+      --accent: #c9a84c;
+      --accent-glow: #e8c565;
+      --accent-dim: rgba(201, 168, 76, 0.15);
+      --teal: #2dd4bf;
+      --cyan: #38bdf8;
+      --coral: #f87171;
+      --surface: rgba(255, 255, 255, 0.025);
+      --border: rgba(255, 255, 255, 0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      z-index: 1;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+    }
+
+    .hero-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s ease forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3.2rem, 8vw, 7.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 1.2s 0.5s ease forwards;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--text-mid);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 1s 0.8s ease forwards;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1s 1.4s ease forwards;
+    }
+
+    .scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 140px 2rem;
+      position: relative;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.5rem;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      max-width: 680px;
+      line-height: 1.8;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ─── PROBLEM ─── */
+    .problem {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-subtle) 100%);
+    }
+
+    .pain-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .pain-point {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      transition: border-color 0.4s, background 0.4s;
+    }
+
+    .pain-point:hover {
+      border-color: rgba(248, 113, 113, 0.2);
+      background: rgba(248, 113, 113, 0.03);
+    }
+
+    .pain-point .number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.5rem;
+      color: var(--coral);
+      line-height: 1;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
+
+    .pain-point h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .pain-point p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    /* ─── ANSWER ─── */
+    .answer {
+      background: var(--bg-subtle);
+    }
+
+    .answer h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    /* ─── CYCLE DIAGRAM ─── */
+    .cycle-container {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      margin: 4rem auto;
+      aspect-ratio: 1;
+    }
+
+    .cycle-ring {
+      position: absolute;
+      inset: 15%;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+    }
+
+    .cycle-ring::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      border-top-color: var(--accent);
+      animation: ringRotate 8s linear infinite;
+    }
+
+    @keyframes ringRotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .cycle-node {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .cycle-node .node-dot {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: all 0.6s;
+    }
+
+    .cycle-node.active .node-dot {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.2);
+    }
+
+    .cycle-node svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--text-dim);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.6s;
+    }
+
+    .cycle-node.active svg { stroke: var(--accent); }
+
+    .cycle-node .node-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+      transition: color 0.6s;
+    }
+
+    .cycle-node.active .node-label { color: var(--accent); }
+
+    .node-implement { top: 5%; left: 50%; }
+    .node-review { top: 50%; left: 95%; }
+    .node-synthesize { top: 95%; left: 50%; }
+    .node-iterate { top: 50%; left: 5%; }
+
+    .cycle-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .cycle-center .cycle-count {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3rem;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .cycle-center .cycle-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 0.3rem;
+    }
+
+    .converged-text {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+
+    .converged-text.show { opacity: 1; }
+
+    /* ─── CONVERGENCE CHART ─── */
+    .convergence-section {
+      background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg) 100%);
+    }
+
+    .convergence-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 600px;
+      margin: 3rem auto 0;
+    }
+
+    .chart-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .chart-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      width: 70px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .chart-bar-track {
+      flex: 1;
+      height: 32px;
+      background: var(--surface);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart-bar {
+      height: 100%;
+      border-radius: 4px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+    }
+
+    .chart-bar.bar-1 { background: linear-gradient(90deg, var(--coral), #fb923c); }
+    .chart-bar.bar-2 { background: linear-gradient(90deg, #fb923c, var(--accent)); }
+    .chart-bar.bar-3 { background: linear-gradient(90deg, var(--accent), var(--teal)); }
+    .chart-bar.bar-4 { background: linear-gradient(90deg, var(--teal), var(--teal)); }
+    .chart-bar.bar-5 { background: var(--teal); }
+
+    .chart-value {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      width: 80px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .chart-value.converged {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* ─── PRINCIPLES ─── */
+    .principles {
+      background: var(--bg);
+    }
+
+    .principle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .principle-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface);
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .principle-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .principle-card:hover {
+      border-color: rgba(201, 168, 76, 0.15);
+      background: rgba(201, 168, 76, 0.02);
+      transform: translateY(-2px);
+    }
+
+    .principle-card:hover::before { opacity: 1; }
+
+    .principle-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .principle-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .principle-card h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .principle-card p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+
+    /* ─── CLOSING ─── */
+    .closing {
+      padding: 180px 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-subtle) 100%);
+    }
+
+    .closing h2 {
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .closing .lead {
+      margin: 0 auto;
+      max-width: 520px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      section { padding: 100px 1.5rem; }
+
+      .pain-points,
+      .principle-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cycle-container {
+        max-width: 340px;
+      }
+
+      .cycle-node .node-dot {
+        width: 44px;
+        height: 44px;
+      }
+
+      .cycle-node svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .cycle-node .node-label {
+        font-size: 0.65rem;
+      }
+
+      .chart-row {
+        gap: 0.8rem;
+      }
+
+      .chart-label {
+        width: 55px;
+        font-size: 0.65rem;
+      }
+
+      .chart-value {
+        width: 65px;
+        font-size: 0.7rem;
+      }
+
+      .closing { padding: 120px 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .node-review { left: 92%; }
+      .node-iterate { left: 8%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-label">Beyond the monoculture</div>
+      <h1>The Great <em>Convergence</em></h1>
+      <p class="hero-sub">When genuinely different models iterate, review, and independently arrive at the same answer&thinsp;&mdash;&thinsp;that agreement means something.</p>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── THE PROBLEM ─── -->
+  <section class="problem">
+    <div class="section-inner">
+      <div class="section-label reveal">The problem</div>
+      <h2 class="reveal reveal-delay-1">The Same-Model Illusion</h2>
+      <p class="lead reveal reveal-delay-2">You can give one model five different personas&thinsp;&mdash;&thinsp;a security expert, a code reviewer, an architect. It feels like a team. But underneath, it's still one model talking to itself.</p>
+      <div class="pain-points">
+        <div class="pain-point reveal reveal-delay-1">
+          <div class="number">01</div>
+          <h3>Shared blind spots</h3>
+          <p>Same training data. Same architecture. Same biases. A model dressed as a "reviewer" has the same gaps as the model dressed as the "implementer."</p>
+        </div>
+        <div class="pain-point reveal reveal-delay-2">
+          <div class="number">02</div>
+          <h3>Correlated failures</h3>
+          <p>When one persona misses something, the others tend to miss it too. Errors don't get caught&thinsp;&mdash;&thinsp;they get confirmed.</p>
+        </div>
+        <div class="pain-point reveal reveal-delay-3">
+          <div class="number">03</div>
+          <h3>False confidence</h3>
+          <p>Agreement between same-model agents feels like validation, but it's an echo chamber. Consensus without genuine independence is just a louder single opinion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── THE ANSWER ─── -->
+  <section class="answer">
+    <div class="section-inner">
+      <div class="section-label reveal">The answer</div>
+      <h2 class="reveal reveal-delay-1">What if <em>different</em> models checked each other?</h2>
+      <p class="lead reveal reveal-delay-2">Different architectures. Different training. Different strengths and weaknesses. When you put genuinely heterogeneous models into a structured review loop&thinsp;&mdash;&thinsp;one implements, others review, findings get synthesized, fixes get made&thinsp;&mdash;&thinsp;and they keep iterating until they all independently agree: zero issues remain.</p>
+      <p class="lead reveal reveal-delay-3" style="margin-top: -2rem; color: var(--text);">That agreement is <strong style="color: var(--accent);">convergence</strong>&thinsp;&mdash;&thinsp;and it's a fundamentally different signal than one model agreeing with itself.</p>
+
+      <div class="cycle-container reveal reveal-delay-4" id="cycle-diagram">
+        <div class="cycle-ring"></div>
+
+        <div class="cycle-node node-implement" id="node-implement">
+          <div class="node-dot">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <span class="node-label">Implement</span>
+        </div>
+
+        <div class="cycle-node node-review" id="node-review">
+          <div class="node-dot">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span class="node-label">Review</span>
+        </div>
+
+        <div class="cycle-node node-synthesize" id="node-synthesize">
+          <div class="node-dot">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <span class="node-label">Synthesize</span>
+        </div>
+
+        <div class="cycle-node node-iterate" id="node-iterate">
+          <div class="node-dot">
+            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          </div>
+          <span class="node-label">Iterate</span>
+        </div>
+
+        <div class="cycle-center">
+          <div class="cycle-count" id="cycle-count">1</div>
+          <div class="cycle-label">Cycle</div>
+          <div class="converged-text" id="converged-text">Converged</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONVERGENCE IN ACTION ─── -->
+  <section class="convergence-section">
+    <div class="section-inner">
+      <div class="section-label reveal">Convergence in action</div>
+      <h2 class="reveal reveal-delay-1">Different eyes, fewer issues, real confidence.</h2>
+      <p class="lead reveal reveal-delay-2">Each cycle, models with different strengths catch different things. Issues drop. When every model&thinsp;&mdash;&thinsp;each with its own architecture and training&thinsp;&mdash;&thinsp;independently reports zero: that's convergence.</p>
+
+      <div class="convergence-chart reveal reveal-delay-3" id="convergence-chart">
+        <div class="chart-row">
+          <span class="chart-label">Cycle 1</span>
+          <div class="chart-bar-track"><div class="chart-bar bar-1" data-width="100%"></div></div>
+          <span class="chart-value">12 issues</span>
+        </div>
+        <div class="chart-row">
+          <span class="chart-label">Cycle 2</span>
+          <div class="chart-bar-track"><div class="chart-bar bar-2" data-width="50%"></div></div>
+          <span class="chart-value">6 issues</span>
+        </div>
+        <div class="chart-row">
+          <span class="chart-label">Cycle 3</span>
+          <div class="chart-bar-track"><div class="chart-bar bar-3" data-width="17%"></div></div>
+          <span class="chart-value">2 issues</span>
+        </div>
+        <div class="chart-row">
+          <span class="chart-label">Cycle 4</span>
+          <div class="chart-bar-track"><div class="chart-bar bar-4" data-width="0%"></div></div>
+          <span class="chart-value converged">0 issues &check;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRINCIPLES ─── -->
+  <section class="principles">
+    <div class="section-inner">
+      <div class="section-label reveal">Why it works</div>
+      <h2 class="reveal reveal-delay-1">Principles of Convergence</h2>
+      <div class="principle-grid">
+        <div class="principle-card reveal reveal-delay-1">
+          <div class="principle-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 3h5v5M8 3H3v5M3 16v5h5M21 16v5h-5"/><path d="M21 3L14 10M3 3l7 7M3 21l7-7M21 21l-7-7"/></svg>
+          </div>
+          <h3>True Independence</h3>
+          <p>Different models have different training, architectures, and failure modes. When they converge, it's because the answer is right&thinsp;&mdash;&thinsp;not because they share the same bias.</p>
+        </div>
+        <div class="principle-card reveal reveal-delay-2">
+          <div class="principle-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h3>Earned Trust</h3>
+          <p>Agreement between homogeneous agents is an echo. Agreement between heterogeneous agents is evidence. Convergence turns correlation into confidence.</p>
+        </div>
+        <div class="principle-card reveal reveal-delay-3">
+          <div class="principle-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M9.5 10.5L5.5 7.5M14.5 10.5l4-3M9.5 13.5L5.5 16.5M14.5 13.5l4 3"/></svg>
+          </div>
+          <h3>Scales With Stakes</h3>
+          <p>Higher stakes? Add different models. More complex domain? Mix specialized architectures. The convergence loop adapts to the difficulty and consequence of the problem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CLOSING ─── -->
+  <section class="closing">
+    <div class="section-inner">
+      <div class="section-label reveal">The future</div>
+      <h2 class="reveal reveal-delay-1">The monoculture era is ending.<br>The convergence era is beginning.</h2>
+      <p class="lead reveal reveal-delay-2">The most reliable AI won't come from one model getting bigger. It will come from different models holding each other accountable&thinsp;&mdash;&thinsp;until only the truth survives.</p>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <p>The Great Convergence</p>
+  </footer>
+
+  <script>
+    /* ───────────────────────────────────────
+       HERO CANVAS — CONVERGENCE ANIMATION
+       ─────────────────────────────────────── */
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, cx, cy;
+
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        W = canvas.clientWidth;
+        H = canvas.clientHeight;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        ctx.scale(dpr, dpr);
+        cx = W / 2;
+        cy = H / 2;
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      const AGENT_COLORS = [
+        'rgba(201, 168, 76, 1)',   // gold
+        'rgba(45, 212, 191, 1)',   // teal
+        'rgba(56, 189, 248, 1)',   // cyan
+        'rgba(248, 113, 113, 1)',  // coral
+        'rgba(168, 162, 158, 1)',  // silver
+        'rgba(192, 132, 252, 1)', // violet
+      ];
+
+      // Each agent is visually distinct — different size, orbit shape, speed
+      const AGENT_SIZES = [3, 5, 3.5, 4.5, 2.5, 4];
+      const AGENT_GLOW  = [14, 24, 16, 22, 12, 20];
+
+      class Agent {
+        constructor(i) {
+          this.color = AGENT_COLORS[i % AGENT_COLORS.length];
+          this.size = AGENT_SIZES[i];
+          this.glowR = AGENT_GLOW[i];
+          const minR = Math.min(W, H) * 0.12;
+          const maxR = Math.min(W, H) * 0.32;
+          this.baseRadius = minR + (i / 5) * (maxR - minR);
+          // Different orbit eccentricities — they move differently
+          this.eccentricity = 0.6 + Math.random() * 0.4;
+          this.speed = 0.12 + i * 0.05;
+          if (i % 2 === 0) this.speed *= -1;
+          this.phase = (i / 6) * Math.PI * 2;
+          this.trail = [];
+          this.maxTrail = 45;
+          this.x = cx;
+          this.y = cy;
+        }
+
+        update(time, convergence) {
+          const r = this.baseRadius * (1 - convergence * 0.92);
+          const angle = this.phase + this.speed * time;
+          const wobble = Math.sin(time * 1.3 + this.phase * 3) * 10 * (1 - convergence);
+          this.x = cx + (r + wobble) * Math.cos(angle);
+          this.y = cy + (r * this.eccentricity + wobble) * Math.sin(angle);
+          this.trail.push({ x: this.x, y: this.y });
+          if (this.trail.length > this.maxTrail) this.trail.shift();
+        }
+
+        draw(ctx) {
+          // Trail
+          for (let i = 1; i < this.trail.length; i++) {
+            const alpha = (i / this.trail.length) * 0.35;
+            const w = (i / this.trail.length) * (this.size * 0.7);
+            ctx.beginPath();
+            ctx.moveTo(this.trail[i - 1].x, this.trail[i - 1].y);
+            ctx.lineTo(this.trail[i].x, this.trail[i].y);
+            ctx.strokeStyle = this.color.replace('1)', `${alpha})`);
+            ctx.lineWidth = w;
+            ctx.stroke();
+          }
+
+          // Glow — sized per agent
+          const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.glowR);
+          grad.addColorStop(0, this.color.replace('1)', '0.25)'));
+          grad.addColorStop(1, 'transparent');
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.glowR, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+
+          // Dot — each a different size
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        }
+      }
+
+      const agents = Array.from({ length: 6 }, (_, i) => new Agent(i));
+
+      function drawConnections(agents, convergence) {
+        const maxDist = 160;
+        for (let i = 0; i < agents.length; i++) {
+          for (let j = i + 1; j < agents.length; j++) {
+            const dx = agents[i].x - agents[j].x;
+            const dy = agents[i].y - agents[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxDist) {
+              const alpha = (1 - dist / maxDist) * 0.2 * (0.3 + convergence * 0.7);
+              ctx.beginPath();
+              ctx.moveTo(agents[i].x, agents[i].y);
+              ctx.lineTo(agents[j].x, agents[j].y);
+              ctx.strokeStyle = `rgba(201, 168, 76, ${alpha})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function drawCenterPulse(convergence) {
+        if (convergence > 0.85) {
+          const intensity = (convergence - 0.85) / 0.15;
+          const radius = 20 + intensity * 80;
+          const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+          grad.addColorStop(0, `rgba(201, 168, 76, ${intensity * 0.2})`);
+          grad.addColorStop(0.5, `rgba(201, 168, 76, ${intensity * 0.05})`);
+          grad.addColorStop(1, 'transparent');
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+      }
+
+      let startTime = null;
+
+      function animate(ts) {
+        if (!startTime) startTime = ts;
+        const elapsed = (ts - startTime) / 1000;
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Convergence oscillation: 0→1→0 over 12s
+        const cycleLen = 12;
+        const t = elapsed % cycleLen;
+        let convergence;
+        if (t < 7) convergence = t / 7;
+        else if (t < 8.5) convergence = 1;
+        else convergence = 1 - (t - 8.5) / 3.5;
+        convergence = convergence * convergence * (3 - 2 * convergence); // smoothstep
+
+        agents.forEach(a => a.update(elapsed, convergence));
+        drawConnections(agents, convergence);
+        drawCenterPulse(convergence);
+        agents.forEach(a => a.draw(ctx));
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+
+    /* ───────────────────────────────────────
+       SCROLL REVEAL
+       ─────────────────────────────────────── */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    /* ───────────────────────────────────────
+       CYCLE DIAGRAM ANIMATION
+       ─────────────────────────────────────── */
+    (function () {
+      const nodes = ['implement', 'review', 'synthesize', 'iterate'];
+      const countEl = document.getElementById('cycle-count');
+      const convergedEl = document.getElementById('converged-text');
+      let cycleNum = 1;
+      let step = 0;
+      let running = false;
+
+      function clearActive() {
+        nodes.forEach(n => document.getElementById('node-' + n).classList.remove('active'));
+      }
+
+      function tick() {
+        clearActive();
+        const nodeId = nodes[step % 4];
+        document.getElementById('node-' + nodeId).classList.add('active');
+
+        if (step > 0 && step % 4 === 0) {
+          cycleNum++;
+          if (cycleNum > 4) {
+            countEl.textContent = '4';
+            convergedEl.classList.add('show');
+            setTimeout(() => {
+              convergedEl.classList.remove('show');
+              cycleNum = 1;
+              step = 0;
+              countEl.textContent = '1';
+              tick();
+            }, 3000);
+            return;
+          }
+          countEl.textContent = cycleNum;
+        }
+
+        step++;
+        setTimeout(tick, 1200);
+      }
+
+      const diagramObs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !running) {
+          running = true;
+          tick();
+        }
+      }, { threshold: 0.3 });
+
+      diagramObs.observe(document.getElementById('cycle-diagram'));
+    })();
+
+    /* ───────────────────────────────────────
+       CONVERGENCE CHART ANIMATION
+       ─────────────────────────────────────── */
+    const chartObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        const bars = document.querySelectorAll('.chart-bar');
+        bars.forEach((bar, i) => {
+          setTimeout(() => {
+            bar.style.width = bar.dataset.width;
+          }, i * 250);
+        });
+        chartObs.disconnect();
+      }
+    }, { threshold: 0.3 });
+
+    chartObs.observe(document.getElementById('convergence-chart'));
+  </script>
+
+</body>
+</html>
