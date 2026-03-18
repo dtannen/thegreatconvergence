@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Great Convergence — Reliable AI Through Multi-Agent Agreement</title>
-  <meta name="description" content="Multiple personas on one model share the same blind spots. True reliability emerges when genuinely different models converge on agreement.">
+  <title>The Great Convergence — Reliable AI Through Independent Models</title>
+  <meta name="description" content="One model playing five roles still has one set of blind spots. Real confidence comes when independent models explore, build, and audit — then arrive at the same answer.">
   <meta property="og:title" content="The Great Convergence">
-  <meta property="og:description" content="When different models agree, that means something.">
+  <meta property="og:description" content="The most reliable AI is not one model. It's independent models that converge.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thegreatconvergence.com">
   <meta property="og:image" content="https://thegreatconvergence.com/og-image.png">
@@ -14,7 +14,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The Great Convergence">
-  <meta name="twitter:description" content="When different models agree, that means something.">
+  <meta name="twitter:description" content="The most reliable AI is not one model. It's independent models that converge.">
   <meta name="twitter:image" content="https://thegreatconvergence.com/og-image.png">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2308080f'/><text x='50' y='68' font-size='60' font-family='serif' fill='%23c9a84c' text-anchor='middle'>C</text></svg>" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,9 @@
       --accent-glow: #e8c565;
       --accent-dim: rgba(201, 168, 76, 0.15);
       --teal: #2dd4bf;
+      --teal-dim: rgba(45, 212, 191, 0.15);
       --cyan: #38bdf8;
+      --cyan-dim: rgba(56, 189, 248, 0.15);
       --coral: #f87171;
       --surface: rgba(255, 255, 255, 0.025);
       --border: rgba(255, 255, 255, 0.06);
@@ -122,11 +124,20 @@
       font-size: clamp(1.05rem, 2vw, 1.25rem);
       font-weight: 300;
       color: var(--text-mid);
-      max-width: 600px;
+      max-width: 620px;
       margin: 0 auto 3rem;
       line-height: 1.8;
       opacity: 0;
       animation: fadeUp 1s 0.8s ease forwards;
+    }
+
+    .hero-secondary {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      opacity: 0;
+      animation: fadeUp 1s 1.1s ease forwards;
     }
 
     .scroll-hint {
@@ -190,6 +201,11 @@
       margin-bottom: 1.5rem;
     }
 
+    h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
     .lead {
       font-size: 1.15rem;
       font-weight: 300;
@@ -244,22 +260,111 @@
       line-height: 1.7;
     }
 
-    /* ─── ANSWER ─── */
-    .answer {
+    /* ─── ARCHITECTURE ─── */
+    .architecture {
       background: var(--bg-subtle);
     }
 
-    .answer h2 em {
-      font-style: italic;
-      color: var(--accent);
+    .provider-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
 
-    /* ─── CYCLE DIAGRAM ─── */
+    .provider-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface);
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .provider-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .provider-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .provider-card:hover::before { opacity: 1; }
+
+    .card-explore::before { background: linear-gradient(90deg, transparent, var(--teal), transparent); }
+    .card-explore:hover { border-color: rgba(45, 212, 191, 0.15); background: rgba(45, 212, 191, 0.02); }
+
+    .card-build::before { background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+    .card-build:hover { border-color: rgba(201, 168, 76, 0.15); background: rgba(201, 168, 76, 0.02); }
+
+    .card-audit::before { background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+    .card-audit:hover { border-color: rgba(56, 189, 248, 0.15); background: rgba(56, 189, 248, 0.02); }
+
+    .provider-role {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-explore .provider-role {
+      color: var(--teal);
+      background: var(--teal-dim);
+    }
+
+    .card-build .provider-role {
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .card-audit .provider-role {
+      color: var(--cyan);
+      background: var(--cyan-dim);
+    }
+
+    .provider-name {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .provider-card h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .provider-card p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+
+    /* ─── PIPELINE / CYCLE DIAGRAM ─── */
+    .pipeline-section {
+      background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg) 100%);
+    }
+
     .cycle-container {
       position: relative;
       width: 100%;
       max-width: 700px;
-      margin: 4rem auto;
+      margin: 2rem auto 0;
+      margin-left: max(0px, calc(50% - 440px));
       aspect-ratio: 1;
     }
 
@@ -289,7 +394,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       transform: translate(-50%, -50%);
       z-index: 2;
     }
@@ -336,10 +441,20 @@
 
     .cycle-node.active .node-label { color: var(--accent); }
 
-    .node-implement { top: 5%; left: 50%; }
-    .node-review { top: 50%; left: 95%; }
-    .node-synthesize { top: 95%; left: 50%; }
-    .node-iterate { top: 50%; left: 5%; }
+    .cycle-node .node-provider {
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      opacity: 0.5;
+      white-space: nowrap;
+      transition: opacity 0.6s;
+    }
+
+    .cycle-node.active .node-provider { opacity: 0.8; }
+
+    .node-explore { top: 5%; left: 50%; }
+    .node-synthesize { top: 50%; left: 95%; }
+    .node-build { top: 95%; left: 50%; }
+    .node-audit { top: 50%; left: 5%; }
 
     .cycle-center {
       position: absolute;
@@ -377,75 +492,158 @@
 
     .converged-text.show { opacity: 1; }
 
-    /* ─── CONVERGENCE CHART ─── */
+    /* ─── CONVERGENCE ─── */
     .convergence-section {
-      background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg) 100%);
+      background: var(--bg);
     }
 
-    .convergence-chart {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      max-width: 600px;
-      margin: 3rem auto 0;
+    .convergence-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+      align-items: start;
     }
 
-    .chart-row {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
+    .conv-panel {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface);
     }
 
-    .chart-label {
-      font-size: 0.75rem;
+    .panel-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    /* Within-role consensus */
+    .consensus-row {
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .consensus-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .consensus-agent {
+      font-size: 0.65rem;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-dim);
-      width: 70px;
-      flex-shrink: 0;
-      text-align: right;
+      color: var(--teal);
+      margin-bottom: 0.3rem;
     }
 
-    .chart-bar-track {
+    .consensus-proposals {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .proposal-tag {
+      font-size: 0.7rem;
+      font-family: 'Sora', monospace;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    .proposal-tag.match {
+      border-color: rgba(45, 212, 191, 0.3);
+      background: rgba(45, 212, 191, 0.08);
+      color: var(--teal);
+    }
+
+    .consensus-result {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .consensus-result strong {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .consensus-promoted {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: rgba(45, 212, 191, 0.12);
+      border: 1px solid rgba(45, 212, 191, 0.25);
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    /* Across-role funnel */
+    .funnel-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .funnel-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      width: 90px;
+      flex-shrink: 0;
+      text-align: right;
+      padding-right: 0.4rem;
+    }
+
+    .funnel-bar-track {
       flex: 1;
-      height: 32px;
+      height: 28px;
       background: var(--surface);
       border-radius: 4px;
-      position: relative;
       overflow: hidden;
     }
 
-    .chart-bar {
+    .funnel-bar {
       height: 100%;
       border-radius: 4px;
       width: 0;
       transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
     }
 
-    .chart-bar.bar-1 { background: linear-gradient(90deg, var(--coral), #fb923c); }
-    .chart-bar.bar-2 { background: linear-gradient(90deg, #fb923c, var(--accent)); }
-    .chart-bar.bar-3 { background: linear-gradient(90deg, var(--accent), var(--teal)); }
-    .chart-bar.bar-4 { background: linear-gradient(90deg, var(--teal), var(--teal)); min-width: 3%; }
+    .funnel-bar.bar-explored { background: linear-gradient(90deg, var(--teal), rgba(45, 212, 191, 0.7)); }
+    .funnel-bar.bar-synthesized { background: linear-gradient(90deg, var(--accent), rgba(201, 168, 76, 0.7)); }
+    .funnel-bar.bar-built { background: linear-gradient(90deg, var(--accent), rgba(232, 197, 101, 0.7)); }
+    .funnel-bar.bar-audited { background: linear-gradient(90deg, var(--cyan), rgba(56, 189, 248, 0.7)); min-width: 3%; }
 
-    .chart-value {
-      font-size: 0.8rem;
+    .funnel-value {
+      font-size: 0.75rem;
       font-weight: 500;
       color: var(--text-dim);
-      width: 80px;
+      width: 75px;
       flex-shrink: 0;
       white-space: nowrap;
     }
 
-    .chart-value.converged {
-      color: var(--teal);
+    .funnel-value.converged {
+      color: var(--cyan);
       font-weight: 600;
     }
 
     /* ─── PRINCIPLES ─── */
     .principles {
-      background: var(--bg);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-subtle) 100%);
     }
 
     .principle-grid {
@@ -523,7 +721,7 @@
     .closing {
       padding: 180px 2rem;
       text-align: center;
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-subtle) 100%);
+      background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg) 100%);
     }
 
     .closing h2 {
@@ -533,7 +731,39 @@
 
     .closing .lead {
       margin: 0 auto;
-      max-width: 520px;
+      max-width: 560px;
+    }
+
+    .cta-wrapper {
+      margin-top: 3rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .cta-button:hover {
+      background: var(--accent-glow);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(201, 168, 76, 0.3);
+    }
+
+    .cta-subtext {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
     }
 
     /* ─── FOOTER ─── */
@@ -549,6 +779,30 @@
       letter-spacing: 0.05em;
     }
 
+    .footer-copyright {
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+
+    .footer-links {
+      margin-top: 0.75rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -559,65 +813,6 @@
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      section { padding: 100px 1.5rem; }
-
-      .pain-points,
-      .principle-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cycle-container {
-        max-width: 340px;
-      }
-
-      .cycle-node .node-dot {
-        width: 44px;
-        height: 44px;
-      }
-
-      .cycle-node svg {
-        width: 18px;
-        height: 18px;
-      }
-
-      .cycle-node .node-label {
-        font-size: 0.65rem;
-      }
-
-      .chart-row {
-        gap: 0.8rem;
-      }
-
-      .chart-label {
-        width: 55px;
-        font-size: 0.65rem;
-      }
-
-      .chart-value {
-        width: 65px;
-        font-size: 0.7rem;
-      }
-
-      .closing { padding: 120px 1.5rem; }
-    }
-
-    @media (max-width: 480px) {
-      .node-review { left: 92%; }
-      .node-iterate { left: 8%; }
-    }
-
-    /* ─── INLINE STYLE REPLACEMENTS ─── */
-    .lead-follow-up {
-      margin-top: -2rem;
-      color: var(--text);
-    }
-
-    .text-accent {
-      color: var(--accent);
-    }
 
     /* ─── SKIP LINK ─── */
     .sr-only {
@@ -651,65 +846,7 @@
       text-decoration: none;
     }
 
-    /* ─── CTA SECTION ─── */
-    .cta-wrapper {
-      margin-top: 3rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      font-family: 'Sora', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      color: var(--bg);
-      background: var(--accent);
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-    }
-
-    .cta-button:hover {
-      background: var(--accent-glow);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 24px rgba(201, 168, 76, 0.3);
-    }
-
-    .cta-subtext {
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: var(--text-dim);
-    }
-
-    /* ─── ENHANCED FOOTER ─── */
-    .footer-links {
-      margin-top: 0.75rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer-links a:hover {
-      color: var(--accent);
-    }
-
-    .footer-copyright {
-      margin-top: 0.5rem;
-      font-size: 0.7rem;
-      color: var(--text-dim);
-    }
-
-    /* ─── JS FALLBACK: content visible by default, hidden only when JS is active ─── */
+    /* ─── JS FALLBACK ─── */
     .js .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -719,6 +856,75 @@
     .js .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .text-accent { color: var(--accent); }
+    .text-teal { color: var(--teal); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 950px) {
+      .cycle-container {
+        margin-left: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 100px 1.5rem; }
+
+      .pain-points,
+      .provider-grid,
+      .principle-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cycle-container {
+        max-width: 340px;
+        margin-left: auto;
+        margin-bottom: 2rem;
+      }
+
+      .cycle-ring {
+        inset: 25%;
+      }
+
+      .cycle-node .node-dot {
+        width: 40px;
+        height: 40px;
+      }
+
+      .cycle-node svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .cycle-node .node-label {
+        font-size: 0.6rem;
+      }
+
+      .cycle-node .node-provider {
+        display: none;
+      }
+
+      .node-synthesize { left: 93%; }
+      .node-audit { left: 7%; }
+
+
+      .convergence-panels {
+        grid-template-columns: 1fr;
+      }
+
+
+      .funnel-label {
+        width: 65px;
+        font-size: 0.65rem;
+      }
+
+      .funnel-value {
+        width: 60px;
+        font-size: 0.68rem;
+      }
+
+      .closing { padding: 120px 1.5rem; }
     }
 
     /* ─── REDUCED MOTION ─── */
@@ -734,6 +940,7 @@
       .hero-label,
       .hero h1,
       .hero-sub,
+      .hero-secondary,
       .scroll-hint {
         opacity: 1;
         animation: none;
@@ -741,14 +948,20 @@
 
       .scroll-line { animation: none; opacity: 0.5; }
 
+      .funnel-bar { transition: none; }
+
       .cycle-ring::before { animation: none; }
 
-      .chart-bar { transition: none; }
-
+      .cycle-node .node-dot,
+      .cycle-node svg,
+      .cycle-node .node-label,
+      .cycle-node .node-provider,
       .converged-text { transition: none; }
 
-      .principle-card { transition: none; }
-      .principle-card:hover { transform: none; }
+      .principle-card,
+      .provider-card { transition: none; }
+      .principle-card:hover,
+      .provider-card:hover { transform: none; }
 
       .pain-point { transition: none; }
     }
@@ -760,12 +973,13 @@
 
   <!-- ─── HERO ─── -->
   <section class="hero">
-    <canvas id="hero-canvas" role="img" aria-label="Animation showing six different AI agents orbiting independently then converging to a single point"></canvas>
-    <p class="sr-only">Six colored dots representing different AI models orbit in unique patterns, then gradually converge to a single point — illustrating how independent models can arrive at the same answer.</p>
+    <canvas id="hero-canvas" role="img" aria-label="Animation showing specialized AI agents — explorers, builders, and auditors — converging to agreement" aria-describedby="hero-canvas-desc"></canvas>
+    <p class="sr-only" id="hero-canvas-desc">Colored dots representing different AI provider roles orbit in distinct groups then converge, illustrating how specialized models arrive at the same answer through independent work.</p>
     <div class="hero-content">
       <div class="hero-label">Beyond the monoculture</div>
-      <h1>The Great <em>Convergence</em></h1>
-      <p class="hero-sub">When genuinely different models iterate, review, and independently arrive at the same answer&thinsp;&mdash;&thinsp;that agreement means something.</p>
+      <h1>The most reliable AI is not one model. It's independent models that <em>converge</em>.</h1>
+      <p class="hero-sub">One model playing five roles still has one set of blind spots. Real confidence comes when different models explore, build, and audit independently&thinsp;&mdash;&thinsp;then arrive at the same answer.</p>
+      <p class="hero-secondary">Specialization is how convergence becomes operational.</p>
     </div>
     <div class="scroll-hint">
       <span>Scroll</span>
@@ -801,29 +1015,51 @@
     </div>
   </section>
 
-  <!-- ─── THE ANSWER ─── -->
-  <section class="answer">
+  <!-- ─── THE ARCHITECTURE ─── -->
+  <section class="architecture">
     <div class="section-inner">
-      <div class="section-label reveal">The answer</div>
-      <h2 class="reveal reveal-delay-1">What if <em>different</em> models checked each other?</h2>
-      <p class="lead reveal reveal-delay-2">Different architectures. Different training. Different strengths and weaknesses. Put genuinely heterogeneous models into a structured review loop: one implements, others review, findings get synthesized, fixes get made. They keep iterating until every model independently reports zero issues.</p>
-      <p class="lead lead-follow-up reveal reveal-delay-3">That agreement is <strong class="text-accent">convergence</strong>&thinsp;&mdash;&thinsp;and it's a fundamentally different signal than one model agreeing with itself.</p>
+      <div class="section-label reveal">The architecture</div>
+      <h2 class="reveal reveal-delay-1">Every Provider Has a <em>Lane</em></h2>
+      <p class="lead reveal reveal-delay-2">The convergence thesis gets specific when you match each provider's structural advantage to a role in the pipeline. Not just different models&thinsp;&mdash;&thinsp;the right model for each job.</p>
+      <div class="provider-grid">
+        <div class="provider-card card-explore reveal reveal-delay-1">
+          <span class="provider-role">Explore &times; N</span>
+          <div class="provider-name">Gemini &middot; GPT &middot; Perplexity</div>
+          <h3>Cast the Widest Net</h3>
+          <p>The discovery phase is where diversity matters most. Mix providers with different search corpora, retrieval strategies, and training data. When models with completely different information sources independently find the same thing, that's signal before a single line of code runs.</p>
+        </div>
+        <div class="provider-card card-build reveal reveal-delay-2">
+          <span class="provider-role">Build</span>
+          <div class="provider-name">Anthropic Claude</div>
+          <h3>Implement with Precision</h3>
+          <p>The strongest agentic coder takes the highest-conviction candidates from the synthesis layer and implements, benchmarks, and iterates until the solution is proven.</p>
+        </div>
+        <div class="provider-card card-audit reveal reveal-delay-3">
+          <span class="provider-role">Audit</span>
+          <div class="provider-name">OpenAI GPT</div>
+          <h3>Validate for Production</h3>
+          <p>The widest enterprise ecosystem validates for operational risk, compliance, and production readiness. If the auditor clears it, the solution has survived genuinely independent scrutiny.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="cycle-container reveal reveal-delay-4" id="cycle-diagram">
+  <!-- ─── THE PIPELINE ─── -->
+  <section class="pipeline-section">
+    <div class="section-inner">
+      <div class="section-label reveal">The pipeline</div>
+      <h2 class="reveal reveal-delay-1">Fan Out. Synthesize. Build. Audit.</h2>
+      <p class="lead reveal reveal-delay-2">Multiple explorers discover independently. A synthesis layer deduplicates and ranks by consensus. Builders implement the top candidates. Auditors validate. The pipeline narrows until only the strongest survives.</p>
+
+      <div class="cycle-container reveal reveal-delay-3" id="cycle-diagram">
         <div class="cycle-ring"></div>
 
-        <div class="cycle-node node-implement" id="node-implement">
+        <div class="cycle-node node-explore" id="node-explore">
           <div class="node-dot">
-            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           </div>
-          <span class="node-label">Implement</span>
-        </div>
-
-        <div class="cycle-node node-review" id="node-review">
-          <div class="node-dot">
-            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
-          </div>
-          <span class="node-label">Review</span>
+          <span class="node-label">Explore &times; N</span>
+          <span class="node-provider">Gemini &middot; GPT &middot; Perplexity</span>
         </div>
 
         <div class="cycle-node node-synthesize" id="node-synthesize">
@@ -831,13 +1067,23 @@
             <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
           <span class="node-label">Synthesize</span>
+          <span class="node-provider">Merge &amp; Rank</span>
         </div>
 
-        <div class="cycle-node node-iterate" id="node-iterate">
+        <div class="cycle-node node-build" id="node-build">
           <div class="node-dot">
-            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           </div>
-          <span class="node-label">Iterate</span>
+          <span class="node-label">Build</span>
+          <span class="node-provider">Claude</span>
+        </div>
+
+        <div class="cycle-node node-audit" id="node-audit">
+          <div class="node-dot">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <span class="node-label">Audit</span>
+          <span class="node-provider">GPT</span>
         </div>
 
         <div class="cycle-center">
@@ -849,33 +1095,68 @@
     </div>
   </section>
 
-  <!-- ─── CONVERGENCE IN ACTION ─── -->
+  <!-- ─── CONVERGENCE ─── -->
   <section class="convergence-section">
     <div class="section-inner">
-      <div class="section-label reveal">Convergence in action</div>
-      <h2 class="reveal reveal-delay-1">Different eyes, fewer issues, real confidence.</h2>
-      <p class="lead reveal reveal-delay-2">Each cycle, models with different strengths catch different things. Issues drop. When every model&thinsp;&mdash;&thinsp;each with its own architecture and training&thinsp;&mdash;&thinsp;independently reports zero: that's convergence. Here's an illustrative example:</p>
+      <div class="section-label reveal">Two-level convergence</div>
+      <h2 class="reveal reveal-delay-1">Convergence happens <em>twice</em>.</h2>
+      <p class="lead reveal reveal-delay-2">First within a role&thinsp;&mdash;&thinsp;when explorers from different providers with different search corpora independently find the same thing, that's signal before any code runs. Then across roles&thinsp;&mdash;&thinsp;when a finding survives building and auditing, that's convergence.</p>
 
-      <div class="convergence-chart reveal reveal-delay-3" id="convergence-chart">
-        <div class="chart-row">
-          <span class="chart-label">Cycle 1</span>
-          <div class="chart-bar-track"><div class="chart-bar bar-1" data-width="100%"></div></div>
-          <span class="chart-value">12 issues</span>
+      <div class="convergence-panels">
+        <div class="conv-panel reveal reveal-delay-3">
+          <h3 class="panel-title">Within the Explorer Role</h3>
+          <div class="consensus-demo" id="consensus-demo">
+            <div class="consensus-row">
+              <span class="consensus-agent">Gemini</span>
+              <div class="consensus-proposals">
+                <span class="proposal-tag match">idx_users_email</span>
+                <span class="proposal-tag">rewrite_subquery</span>
+              </div>
+            </div>
+            <div class="consensus-row">
+              <span class="consensus-agent">Perplexity</span>
+              <div class="consensus-proposals">
+                <span class="proposal-tag match">idx_users_email</span>
+                <span class="proposal-tag">idx_orders_date</span>
+              </div>
+            </div>
+            <div class="consensus-row">
+              <span class="consensus-agent">GPT</span>
+              <div class="consensus-proposals">
+                <span class="proposal-tag match">idx_users_email</span>
+                <span class="proposal-tag">rewrite_lateral</span>
+              </div>
+            </div>
+            <div class="consensus-result">
+              <strong>3/3</strong> explorers independently agree &rarr; promoted to build
+            </div>
+          </div>
         </div>
-        <div class="chart-row">
-          <span class="chart-label">Cycle 2</span>
-          <div class="chart-bar-track"><div class="chart-bar bar-2" data-width="50%"></div></div>
-          <span class="chart-value">6 issues</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-label">Cycle 3</span>
-          <div class="chart-bar-track"><div class="chart-bar bar-3" data-width="17%"></div></div>
-          <span class="chart-value">2 issues</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-label">Cycle 4</span>
-          <div class="chart-bar-track"><div class="chart-bar bar-4" data-width="0%"></div></div>
-          <span class="chart-value converged">0 issues &check;</span>
+
+        <div class="conv-panel reveal reveal-delay-4">
+          <h3 class="panel-title">Across the Pipeline</h3>
+          <div class="convergence-funnel" id="convergence-funnel">
+            <div class="funnel-row">
+              <span class="funnel-label">Explored</span>
+              <div class="funnel-bar-track"><div class="funnel-bar bar-explored" data-width="100%"></div></div>
+              <span class="funnel-value">12 candidates</span>
+            </div>
+            <div class="funnel-row">
+              <span class="funnel-label">Synthesized</span>
+              <div class="funnel-bar-track"><div class="funnel-bar bar-synthesized" data-width="42%"></div></div>
+              <span class="funnel-value">5 promoted</span>
+            </div>
+            <div class="funnel-row">
+              <span class="funnel-label">Built</span>
+              <div class="funnel-bar-track"><div class="funnel-bar bar-built" data-width="25%"></div></div>
+              <span class="funnel-value">3 survive</span>
+            </div>
+            <div class="funnel-row">
+              <span class="funnel-label">Audited</span>
+              <div class="funnel-bar-track"><div class="funnel-bar bar-audited" data-width="8%"></div></div>
+              <span class="funnel-value converged">1 converged &check;</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -891,22 +1172,22 @@
           <div class="principle-icon">
             <svg viewBox="0 0 24 24"><path d="M16 3h5v5M8 3H3v5M3 16v5h5M21 16v5h-5"/><path d="M21 3L14 10M3 3l7 7M3 21l7-7M21 21l-7-7"/></svg>
           </div>
-          <h3>True Independence</h3>
-          <p>Different models have different training, architectures, and failure modes. When they converge, it's a strong signal the answer is right&thinsp;&mdash;&thinsp;not because they share the same bias.</p>
+          <h3>Comparative Advantage</h3>
+          <p>Each provider brings structurally different training data, architecture, and tooling. The explorer role maximizes this&thinsp;&mdash;&thinsp;mix Gemini, GPT, and Perplexity as searchers with different corpora. Give building to the best coder. Give auditing to the deepest enterprise mind. Match the advantage to the role.</p>
         </div>
         <div class="principle-card reveal reveal-delay-2">
           <div class="principle-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
-          <h3>Earned Trust</h3>
-          <p>Agreement between homogeneous agents is an echo. Agreement between heterogeneous agents is evidence. Convergence turns correlation into confidence.</p>
+          <h3>Synthesis Over Echo</h3>
+          <p>The merge layer between roles is where signal separates from noise. When N explorers independently discover the same candidate, that consensus carries conviction no single agent can match. The synthesis layer turns fan-out into focus.</p>
         </div>
         <div class="principle-card reveal reveal-delay-3">
           <div class="principle-icon">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M9.5 10.5L5.5 7.5M14.5 10.5l4-3M9.5 13.5L5.5 16.5M14.5 13.5l4 3"/></svg>
           </div>
           <h3>Scales With Stakes</h3>
-          <p>Higher stakes? Add different models. More complex domain? Mix specialized architectures. The convergence loop adapts to the difficulty and consequence of the problem.</p>
+          <p>Higher stakes? Add more explorers. More complex domain? Mix in specialized models. Each additional independent voice makes convergence harder to achieve&thinsp;&mdash;&thinsp;and more meaningful when it happens.</p>
         </div>
       </div>
     </div>
@@ -916,11 +1197,11 @@
   <section class="closing">
     <div class="section-inner">
       <div class="section-label reveal">The future</div>
-      <h2 class="reveal reveal-delay-1">The monoculture era is ending.<br>The convergence era is beginning.</h2>
-      <p class="lead reveal reveal-delay-2">The most reliable AI won't come from one model getting bigger. It will come from different models holding each other accountable&thinsp;&mdash;&thinsp;until only the truth survives.</p>
+      <h2 class="reveal reveal-delay-1">The monoculture era is ending.<br>The specialization era is beginning.</h2>
+      <p class="lead reveal reveal-delay-2">The most reliable AI won't come from one model getting bigger. It will come from different providers doing what they're best at&thinsp;&mdash;&thinsp;with a synthesis layer that only promotes what independent specialists agree on.</p>
       <div class="cta-wrapper reveal reveal-delay-3">
         <a href="https://github.com/Commands-com" class="cta-button">Explore on GitHub</a>
-        <p class="cta-subtext">Read the source. Try the loop. Join the convergence.</p>
+        <p class="cta-subtext">Read the source. Run the rooms. Join the convergence.</p>
       </div>
     </div>
   </section>
@@ -939,13 +1220,13 @@
   <noscript>
     <style>
       .reveal { opacity: 1; transform: none; }
-      .hero-label, .hero h1, .hero-sub, .scroll-hint { opacity: 1; animation: none; }
+      .hero-label, .hero h1, .hero-sub, .hero-secondary, .scroll-hint { opacity: 1; animation: none; }
     </style>
   </noscript>
 
   <script>
     /* ───────────────────────────────────────
-       SCROLL REVEAL (runs first to ensure content is never stranded hidden)
+       SCROLL REVEAL
        ─────────────────────────────────────── */
     (function () {
       var reveals = document.querySelectorAll('.reveal');
@@ -997,16 +1278,16 @@
       window.addEventListener('resize', () => { resize(); recalcAgents(); });
       resize();
 
+      // Colors by provider role: 3 teal (explorers), 2 gold (builders), 1 cyan (auditor)
       const AGENT_COLORS = [
-        'rgba(201, 168, 76, 1)',   // gold
-        'rgba(45, 212, 191, 1)',   // teal
-        'rgba(56, 189, 248, 1)',   // cyan
-        'rgba(248, 113, 113, 1)',  // coral
-        'rgba(168, 162, 158, 1)',  // silver
-        'rgba(192, 132, 252, 1)', // violet
+        'rgba(45, 212, 191, 1)',   // teal — explorer 1
+        'rgba(52, 211, 153, 1)',   // emerald — explorer 2
+        'rgba(94, 234, 212, 1)',   // light teal — explorer 3
+        'rgba(201, 168, 76, 1)',   // gold — builder 1
+        'rgba(232, 197, 101, 1)',  // light gold — builder 2
+        'rgba(56, 189, 248, 1)',   // cyan — auditor
       ];
 
-      // Each agent is visually distinct — different size, orbit shape, speed
       const AGENT_SIZES = [3, 5, 3.5, 4.5, 2.5, 4];
       const AGENT_GLOW  = [14, 24, 16, 22, 12, 20];
 
@@ -1018,7 +1299,6 @@
           const minR = Math.min(W, H) * 0.12;
           const maxR = Math.min(W, H) * 0.32;
           this.baseRadius = minR + (i / 5) * (maxR - minR);
-          // Different orbit eccentricities — they move differently
           this.eccentricity = 0.6 + Math.random() * 0.4;
           this.speed = 0.12 + i * 0.05;
           if (i % 2 === 0) this.speed *= -1;
@@ -1040,7 +1320,6 @@
         }
 
         draw(ctx) {
-          // Trail
           for (let i = 1; i < this.trail.length; i++) {
             const alpha = (i / this.trail.length) * 0.35;
             const w = (i / this.trail.length) * (this.size * 0.7);
@@ -1052,7 +1331,6 @@
             ctx.stroke();
           }
 
-          // Glow — sized per agent
           const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.glowR);
           grad.addColorStop(0, this.color.replace('1)', '0.25)'));
           grad.addColorStop(1, 'transparent');
@@ -1061,7 +1339,6 @@
           ctx.fillStyle = grad;
           ctx.fill();
 
-          // Dot — each a different size
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fillStyle = this.color;
@@ -1114,14 +1391,13 @@
 
         ctx.clearRect(0, 0, W, H);
 
-        // Convergence oscillation: 0→1→0 over 12s
         const cycleLen = 12;
         const t = elapsed % cycleLen;
         let convergence;
         if (t < 7) convergence = t / 7;
         else if (t < 8.5) convergence = 1;
         else convergence = 1 - (t - 8.5) / 3.5;
-        convergence = convergence * convergence * (3 - 2 * convergence); // smoothstep
+        convergence = convergence * convergence * (3 - 2 * convergence);
 
         agents.forEach(a => a.update(elapsed, convergence));
         drawConnections(agents, convergence);
@@ -1147,7 +1423,6 @@
         drawStaticFrame();
       }
 
-      // Redraw static frame on resize when animation is disabled
       window.addEventListener('resize', () => {
         if (prefersReducedMotion.matches) {
           requestAnimationFrame(drawStaticFrame);
@@ -1159,19 +1434,17 @@
        CYCLE DIAGRAM ANIMATION
        ─────────────────────────────────────── */
     (function () {
-      const nodes = ['implement', 'review', 'synthesize', 'iterate'];
+      const nodes = ['explore', 'synthesize', 'build', 'audit'];
       const countEl = document.getElementById('cycle-count');
       const convergedEl = document.getElementById('converged-text');
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // In reduced-motion mode, show a static converged state
       if (reducedMotion) {
         countEl.textContent = '4';
         convergedEl.classList.add('show');
         return;
       }
 
-      // If IntersectionObserver is unavailable, show static converged state
       if (!('IntersectionObserver' in window)) {
         countEl.textContent = '4';
         convergedEl.classList.add('show');
@@ -1182,7 +1455,6 @@
       let step = 0;
       let running = false;
       let visible = false;
-      let timeoutId = null;
 
       function clearActive() {
         nodes.forEach(n => document.getElementById('node-' + n).classList.remove('active'));
@@ -1200,7 +1472,7 @@
             countEl.textContent = '4';
             clearActive();
             convergedEl.classList.add('show');
-            timeoutId = setTimeout(() => {
+            setTimeout(() => {
               convergedEl.classList.remove('show');
               cycleNum = 1;
               step = 0;
@@ -1213,7 +1485,7 @@
         }
 
         step++;
-        timeoutId = setTimeout(tick, 1200);
+        setTimeout(tick, 1200);
       }
 
       const diagramObs = new IntersectionObserver((entries) => {
@@ -1228,30 +1500,29 @@
     })();
 
     /* ───────────────────────────────────────
-       CONVERGENCE CHART ANIMATION
+       CONVERGENCE FUNNEL ANIMATION
        ─────────────────────────────────────── */
     (function () {
-      const bars = document.querySelectorAll('.chart-bar');
+      const bars = document.querySelectorAll('.funnel-bar');
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Reduced motion or no IntersectionObserver: show bars immediately
       if (reducedMotion || !('IntersectionObserver' in window)) {
         bars.forEach(bar => { bar.style.width = bar.dataset.width; });
         return;
       }
 
-      const chartObs = new IntersectionObserver((entries) => {
+      const funnelObs = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
           bars.forEach((bar, i) => {
             setTimeout(() => {
               bar.style.width = bar.dataset.width;
             }, i * 250);
           });
-          chartObs.disconnect();
+          funnelObs.disconnect();
         }
       }, { threshold: 0.3 });
 
-      chartObs.observe(document.getElementById('convergence-chart'));
+      funnelObs.observe(document.getElementById('convergence-funnel'));
     })();
   </script>
 
