@@ -141,16 +141,15 @@
     }
 
     .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
+      margin-top: auto;
+      padding-top: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
       opacity: 0;
       animation: fadeUp 1s 1.4s ease forwards;
+      z-index: 1;
     }
 
     .scroll-hint span {
@@ -1214,6 +1213,7 @@
     <p class="footer-copyright">&copy; 2026 The Great Convergence. Built with convergence in mind.</p>
     <div class="footer-links">
       <a href="https://github.com/Commands-com">GitHub</a>
+      <a href="https://intellidreams.com" target="_blank" rel="noopener noreferrer">IntelliDreams</a>
     </div>
   </footer>
 
